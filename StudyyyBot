@@ -1,0 +1,115 @@
+import logging
+from aiogram import Bot, Dispatcher, executor, types
+
+API_TOKEN = '5399152360:AAEskPECH-JdSL8fZ0G2as_XyerlyJ35lmg'
+
+logging.basicConfig(level=logging.INFO)
+
+bot = Bot(token=API_TOKEN)
+dp = Dispatcher(bot)
+
+
+keyboard = types.ReplyKeyboardMarkup()
+button_1 = types.KeyboardButton(text="1-4 класс")
+keyboard.add(button_1)
+button_2 = "5-9 класс"
+keyboard.add(button_2)
+button_3 = "10-11 класс"
+keyboard.add(button_3)
+button_4 = "Курсы в университете"
+keyboard.add(button_4)
+button_5 = "Техподдержка"
+keyboard.add(button_5)
+
+keyboard1 = types.ReplyKeyboardMarkup()
+button_6 = "1 класс"
+keyboard1.add(button_6)
+button_7 = "2 класс"
+keyboard1.add(button_7)
+button_8 = "3 класс"
+keyboard1.add(button_8)
+button_9 = "4 класс"
+keyboard1.add(button_9)
+button_50 = "Назад"
+keyboard1.add(button_50)
+
+keyboard2 = types.ReplyKeyboardMarkup()
+button_10 = "5 класс"
+keyboard2.add(button_10)
+button_11 = "6 класс"
+keyboard2.add(button_11)
+button_12 = "7 класс"
+keyboard2.add(button_12)
+button_13 = "8 класс"
+keyboard2.add(button_13)
+button_14 = "9 класс"
+keyboard2.add(button_14)
+button_51 = "Назад"
+keyboard2.add(button_51)
+
+keyboard3 = types.ReplyKeyboardMarkup()
+button_19 = "10 класс"
+keyboard3.add(button_19)
+button_20 = "11 класс"
+keyboard3.add(button_20)
+button_53 = "Назад"
+keyboard3.add(button_53)
+
+keyboard4 = types.ReplyKeyboardMarkup()
+button_15 = "1 курс"
+keyboard4.add(button_15)
+button_16 = "2 курс"
+keyboard4.add(button_16)
+button_17 = "3 курс"
+keyboard4.add(button_17)
+button_18 = "4 курс"
+keyboard4.add(button_18)
+button_52 = "Назад"
+keyboard4.add(button_52)
+
+
+@dp.message_handler(commands=['start'])
+async def cmd_start(message: types.Message):
+    await message.answer(
+        "Привет, я учебный бот города Иннополис! С моей помощью вы можете попасть на конференцию. Для этого укажите класс/курс.",
+        reply_markup=keyboard)
+
+    @dp.message_handler(lambda message: message.text == "1-4 класс")
+    async def without_puree(message: types.Message):
+        await message.reply("Выберите класс", reply_markup=keyboard1)
+
+    @dp.message_handler(lambda message: message.text == "5-9 класс")
+    async def without_puree(message: types.Message):
+        await message.reply("Выберите класс", reply_markup=keyboard2)
+
+    @dp.message_handler(lambda message: message.text == "10-11 класс")
+    async def without_puree(message: types.Message):
+        await message.reply("Выберите класс", reply_markup=keyboard3)
+
+    @dp.message_handler(lambda message: message.text == "Курсы в университете")
+    async def without_puree(message: types.Message):
+        await message.reply("Выберите курс", reply_markup=keyboard4)
+
+    @dp.message_handler(lambda message: message.text == "Техподдержка")
+    async def without_puree(message: types.Message):
+        await message.reply("В случае вопросов обращаться: @telegrotet @Egor_Kukharev")
+
+    @dp.message_handler(lambda message: message.text == "Назад")
+    async def without_puree(message: types.Message):
+        await message.reply("Выберите классы", reply_markup=keyboard)
+
+    @dp.message_handler(lambda message: message.text == "1 класс")
+    async def without_puree(message: types.Message):
+        await message.reply("https://t.me/+VHuMypvfjy5lN2Ri")
+
+    @dp.message_handler(lambda message: message.text == "5 класс")
+    async def without_puree(message: types.Message):
+        await message.reply("https://t.me/+v9CvWl_4BoA0ZmRi")
+
+    @dp.message_handler(lambda message: message.text == "9 класс")
+    async def without_puree(message: types.Message):
+        await message.reply("https://t.me/+iNWL_wJUgrFiYmEy")
+
+
+if __name__ == '__main__':
+    executor.start_polling(dp, skip_updates=True)
